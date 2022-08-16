@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+{% block title %}
+{{title}}
+{% endblock %}
+{% block cont %}
+    <h1>Главная страница</h1>
+    {% for el in tasks %}
+        <div class = 'alert alert-warning nt-2'>
+            <h3> {{ el.title }} </h3>
+            <p>{{ el.task }} </p>
+        </div>
+{% endfor %}
+{% endblock %}
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+   {{ form.as_p }}
+  <button type="submit">Upload</button>
+</form>
+
+{% if img_obj %}
+  <h3>Succesfully uploaded : {{img_obj.title}}</h3>
+  <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
+{% endif %}
